@@ -1,6 +1,6 @@
 #include <iostream>
 
-template<int NumberA, int NumberB>
+template<unsigned int NumberA, unsigned int NumberB>
 constexpr bool IsNumberDivisible()
 {
 	if constexpr (NumberB == 0 || NumberB == 1)
@@ -9,8 +9,8 @@ constexpr bool IsNumberDivisible()
 		return NumberA % NumberB != 0;
 }
 
-template<int NumberToCheck, int ... Numbers>
-constexpr bool CheckIfNumberIsPrime(std::integer_sequence<int, Numbers...>)
+template<unsigned int NumberToCheck, unsigned int ... Numbers>
+constexpr bool CheckIfNumberIsPrime(std::integer_sequence<unsigned int, Numbers...>)
 {
 	return (IsNumberDivisible<NumberToCheck, Numbers>() && ...); // all of these need to return true, or it is NOT a prime number
 }
@@ -33,7 +33,7 @@ constexpr void PrintIfNumbersArePrime(std::integer_sequence<unsigned int, Number
 
 int main()
 {
-	PrintIfNumbersArePrime(std::make_integer_sequence<unsigned int, 11>{});
+	PrintIfNumbersArePrime(std::make_integer_sequence<unsigned int, 11u>{});
 
 	return 0;
 }
