@@ -21,19 +21,19 @@ constexpr bool CheckIfNumberIsPrime()
 	if constexpr (Number == 0u || Number == 1u)
 		return false;
 	else
-		return CheckIfNumberIsPrime<Number>(std::make_integer_sequence<int, (Number / 2u) + 1u>{}); // make sure we do Number / 2 + 1, since integer_sequence upper limit is exclusive
+		return CheckIfNumberIsPrime<Number>(std::make_integer_sequence<unsigned int, (Number / 2u) + 1u>{}); // make sure we do Number / 2 + 1, since integer_sequence upper limit is exclusive
 }
 
 template<unsigned int ... Numbers>
-constexpr void PrintIfNumbersArePrime(std::integer_sequence<int, Numbers...>)
+constexpr void PrintIfNumbersArePrime(std::integer_sequence<unsigned int, Numbers...>)
 {
 	std::cout << std::boolalpha;
 	((std::cout << Numbers << ": " << CheckIfNumberIsPrime<Numbers>() << std::endl), ...);
 }
 
-int main(int, char* [])
+int main()
 {
-	PrintIfNumbersArePrime(std::make_integer_sequence<int, 11>{});
+	PrintIfNumbersArePrime(std::make_integer_sequence<unsigned int, 11>{});
 
 	return 0;
 }
